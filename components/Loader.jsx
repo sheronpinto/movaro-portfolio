@@ -12,12 +12,12 @@ export default function Loader() {
   useEffect(() => {
     setReady(true);
     let seen = false;
-    try { seen = !!sessionStorage.getItem('movaro_loaded'); } catch {}
+    try { seen = !!sessionStorage.getItem('sheron_loaded'); } catch {}
     if (seen) return;
     setShow(true);
     const t = setTimeout(() => {
       setShow(false);
-      try { sessionStorage.setItem('movaro_loaded', '1'); } catch {}
+      try { sessionStorage.setItem('sheron_loaded', '1'); } catch {}
     }, 2600);
     return () => clearTimeout(t);
   }, []);
@@ -90,7 +90,7 @@ export default function Loader() {
                 transition={{ duration: 1.4, ease, delay: 0.3 }}
                 className="text-5xl md:text-7xl font-bold tracking-[0.18em] inline-block"
               >
-                MOVARO<span className="text-[#8E7B4B]">®</span>
+                SHERON PINTO<span className="text-[#8E7B4B]">®</span>
               </motion.div>
             </div>
 
@@ -111,7 +111,7 @@ export default function Loader() {
               transition={{ duration: 0.7, ease, delay: 1.5 }}
               className="mt-5 text-[10px] tracking-[0.45em] uppercase text-[#BDBDBD]"
             >
-              Motion Studio
+              Motion Designer
             </motion.div>
           </div>
         </motion.div>

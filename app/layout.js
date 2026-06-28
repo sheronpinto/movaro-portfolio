@@ -1,6 +1,7 @@
 import './globals.css';
 import { Providers } from './providers';
 import { Space_Grotesk } from 'next/font/google';
+import Shell from './Shell';
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ['latin'],
@@ -31,7 +32,9 @@ export default function RootLayout({ children }) {
         />
       </head>
       <body className="font-sans antialiased bg-[#050505] text-white selection:bg-[#8E7B4B]/40 selection:text-white">
-        <Providers>{children}</Providers>
+        <Providers>
+          <Shell>{children}</Shell>
+        </Providers>
       </body>
     </html>
   );

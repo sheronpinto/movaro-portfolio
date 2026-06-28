@@ -1,19 +1,14 @@
 'use client';
 
-import { useEffect, useMemo, useRef, useState } from 'react';
-import { motion, AnimatePresence, useScroll, useTransform, useInView } from 'framer-motion';
-import {
-  ArrowUpRight, X, Play, ArrowRight, ArrowUp,
-  Instagram, Youtube, Github, Globe, ExternalLink, HardDrive
-} from 'lucide-react';
-import { PROJECTS, LINK_LABELS } from '@/lib/projects';
-import Cursor from '@/components/Cursor';
-import Particles from '@/components/Particles';
-import SmoothScroll from '@/components/SmoothScroll';
+import { useEffect, useRef, useState } from 'react';
+import Link from 'next/link';
+import { motion, useScroll, useTransform, useInView, AnimatePresence } from 'framer-motion';
+import { ArrowUpRight, ArrowRight, ArrowUp } from 'lucide-react';
+import { PROJECTS } from '@/lib/projects';
+import Nav from '@/components/Nav';
 
 const ease = [0.22, 1, 0.36, 1];
 
-// ───────────────────────────────────────────────────────────── helpers
 const SplitReveal = ({ text, className = '', delay = 0 }) => {
   const words = text.split(' ');
   return (
@@ -50,47 +45,7 @@ const FadeUp = ({ children, delay = 0, y = 24, className = '' }) => {
   );
 };
 
-// ───────────────────────────────────────────────────────────── Navbar
-const Nav = ({ onContactClick }) => {
-  const [scrolled, setScrolled] = useState(false);
-  useEffect(() => {
-    const f = () => setScrolled(window.scrollY > 30);
-    f();
-    window.addEventListener('scroll', f, { passive: true });
-    return () => window.removeEventListener('scroll', f);
-  }, []);
-  return (
-    <motion.header
-      initial={{ y: -40, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 1, ease, delay: 0.4 }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        scrolled ? 'backdrop-blur-xl bg-[#050505]/60 border-b border-white/5' : ''
-      }`}
-    >
-      <div className="max-w-[1500px] mx-auto px-6 lg:px-10 h-20 flex items-center justify-between">
-        <a href="#top" className="text-lg tracking-[0.2em] font-semibold">
-          MOVARO<span className="text-[#8E7B4B]">®</span>
-        </a>
-        <nav className="hidden md:flex items-center gap-10 text-sm text-[#BDBDBD]">
-          <a href="#work" className="hover:text-white transition-colors">Work</a>
-          <a href="#about" className="hover:text-white transition-colors">About</a>
-          <a href="#contact" className="hover:text-white transition-colors">Contact</a>
-        </nav>
-        <button
-          onClick={onContactClick}
-          className="group relative overflow-hidden rounded-full border border-white/15 px-5 py-2.5 text-sm hover:border-[#8E7B4B] transition-colors"
-        >
-          <span className="relative z-10 inline-flex items-center gap-2">
-            Let&apos;s Talk <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-          </span>
-        </button>
-      </div>
-    </motion.header>
-  );
-};
-
-// ───────────────────────────────────────────────────────────── Hero
+// ─── Hero
 const Hero = () => {
   const { scrollYProgress } = useScroll();
   const y = useTransform(scrollYProgress, [0, 0.3], [0, -120]);
@@ -118,9 +73,7 @@ const Hero = () => {
               animate={{ scale: 1 }}
               transition={{ duration: 0.8, ease, delay: 1.3 }}
               className="inline-block align-top text-[#8E7B4B] text-[0.55em] ml-2"
-            >
-              .
-            </motion.span>
+            >.</motion.span>
           </div>
         </h1>
 
@@ -140,24 +93,25 @@ const Hero = () => {
           transition={{ duration: 1, ease, delay: 1.25 }}
           className="mt-10 flex flex-wrap items-center gap-4"
         >
-          <a
-            href="#work"
+          <Link
+            href="/#work"
             className="group inline-flex items-center gap-3 rounded-full bg-white text-black px-7 py-3.5 text-sm font-medium hover:bg-[#8E7B4B] hover:text-white transition-colors"
+            data-cursor="hover"
           >
             View Work
             <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-          </a>
-          <a
-            href="#contact"
+          </Link>
+          <Link
+            href="/#contact"
             className="group inline-flex items-center gap-3 rounded-full border border-white/20 px-7 py-3.5 text-sm hover:border-white/60 transition-colors"
+            data-cursor="hover"
           >
             Contact
             <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-          </a>
+          </Link>
         </motion.div>
       </motion.div>
 
-      {/* Scroll indicator */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -179,8 +133,8 @@ const Hero = () => {
   );
 };
 
-// ───────────────────────────────────────────────────────────── Project Card
-const ProjectCard = ({ project, index, onOpen }) => {
+// ─── Project Card (now a <Link> to /work/[slug])
+const ProjectCard = ({ project, index }) => {
   const ref = useRef(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ['start end', 'end start'] });
   const y = useTransform(scrollYProgress, [0, 1], ['8%', '-8%']);
@@ -193,48 +147,49 @@ const ProjectCard = ({ project, index, onOpen }) => {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-10% 0px' }}
       transition={{ duration: 1, ease }}
-      className={`group cursor-pointer ${isWide ? 'md:col-span-2' : ''}`}
-      onClick={() => onOpen(project)}
-      data-cursor="hover"
+      className={`group ${isWide ? 'md:col-span-2' : ''}`}
     >
-      <div className="relative overflow-hidden rounded-xl bg-[#151515] aspect-[16/10]">
-        <motion.div style={{ y }} className="absolute inset-0 -m-8">
-          <img
-            src={project.thumbnail}
-            alt={project.title}
-            loading="lazy"
-            className="h-full w-full object-cover transition-transform duration-[1.4s] ease-out group-hover:scale-110"
-          />
-        </motion.div>
+      <Link
+        href={`/work/${project.id}`}
+        className="block"
+        data-cursor="hover"
+      >
+        <div className="relative overflow-hidden rounded-xl bg-[#151515] aspect-[16/10]">
+          <motion.div style={{ y }} className="absolute inset-0 -m-8">
+            <img
+              src={project.thumbnail}
+              alt={project.title}
+              loading="lazy"
+              className="h-full w-full object-cover transition-transform duration-[1400ms] ease-out group-hover:scale-110"
+            />
+          </motion.div>
 
-        {/* gradient & noise overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
-        <div className="absolute inset-0 ring-1 ring-inset ring-white/5 rounded-xl" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent" />
+          <div className="absolute inset-0 ring-1 ring-inset ring-white/5 rounded-xl" />
 
-        {/* hover play */}
-        <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-          <div className="h-16 w-16 rounded-full border border-white/40 backdrop-blur-md bg-black/30 flex items-center justify-center">
-            <Play className="h-5 w-5 text-white fill-white" />
-          </div>
-        </div>
-
-        {/* meta */}
-        <div className="absolute inset-x-0 bottom-0 p-6 lg:p-8 flex items-end justify-between gap-6">
-          <div>
-            <div className="text-[11px] tracking-[0.25em] uppercase text-[#BDBDBD] mb-2">
-              {project.category} · {project.year}
+          <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+            <div className="h-16 w-16 rounded-full border border-white/40 backdrop-blur-md bg-black/30 flex items-center justify-center">
+              <ArrowUpRight className="h-5 w-5 text-white" />
             </div>
-            <h3 className="text-2xl lg:text-3xl font-semibold tracking-tight">{project.title}</h3>
           </div>
-          <ArrowUpRight className="h-6 w-6 text-white/70 transition-all duration-500 group-hover:text-[#8E7B4B] group-hover:-translate-y-1 group-hover:translate-x-1" />
+
+          <div className="absolute inset-x-0 bottom-0 p-6 lg:p-8 flex items-end justify-between gap-6">
+            <div>
+              <div className="text-[11px] tracking-[0.25em] uppercase text-[#BDBDBD] mb-2">
+                {project.category} · {project.year}
+              </div>
+              <h3 className="text-2xl lg:text-3xl font-semibold tracking-tight">{project.title}</h3>
+            </div>
+            <ArrowUpRight className="h-6 w-6 text-white/70 transition-all duration-500 group-hover:text-[#8E7B4B] group-hover:-translate-y-1 group-hover:translate-x-1" />
+          </div>
         </div>
-      </div>
+      </Link>
     </motion.div>
   );
 };
 
-// ───────────────────────────────────────────────────────────── Work Section
-const Work = ({ onOpen }) => (
+// ─── Work
+const Work = () => (
   <section id="work" className="relative z-10 px-6 lg:px-10 py-32">
     <div className="max-w-[1500px] mx-auto">
       <FadeUp className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16">
@@ -250,138 +205,14 @@ const Work = ({ onOpen }) => (
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
         {PROJECTS.map((p, i) => (
-          <ProjectCard key={p.id} project={p} index={i} onOpen={onOpen} />
+          <ProjectCard key={p.id} project={p} index={i} />
         ))}
       </div>
     </div>
   </section>
 );
 
-// ───────────────────────────────────────────────────────────── Project Modal
-const linkIcon = (k) => {
-  const cls = 'h-4 w-4';
-  switch (k) {
-    case 'instagram': return <Instagram className={cls} />;
-    case 'youtube': return <Youtube className={cls} />;
-    case 'github': return <Github className={cls} />;
-    case 'website': return <Globe className={cls} />;
-    case 'drive': return <HardDrive className={cls} />;
-    default: return <ExternalLink className={cls} />;
-  }
-};
-
-const ProjectModal = ({ project, onClose }) => {
-  useEffect(() => {
-    if (!project) return;
-    const prev = document.body.style.overflow;
-    document.body.style.overflow = 'hidden';
-    const onEsc = (e) => e.key === 'Escape' && onClose();
-    window.addEventListener('keydown', onEsc);
-    return () => { document.body.style.overflow = prev; window.removeEventListener('keydown', onEsc); };
-  }, [project, onClose]);
-
-  return (
-    <AnimatePresence>
-      {project && (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.5, ease }}
-          className="fixed inset-0 z-[90] bg-black/85 backdrop-blur-xl overflow-y-auto no-scrollbar"
-          onClick={onClose}
-        >
-          <motion.div
-            initial={{ y: 40, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            exit={{ y: 30, opacity: 0 }}
-            transition={{ duration: 0.7, ease }}
-            className="max-w-[1300px] mx-auto px-4 md:px-10 py-8 md:py-14"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <div className="flex items-center justify-between mb-8">
-              <div>
-                <div className="kicker">◦ {project.category} · {project.year}</div>
-                <h3 className="display text-4xl md:text-6xl mt-3">{project.title}</h3>
-              </div>
-              <button
-                onClick={onClose}
-                className="h-12 w-12 rounded-full border border-white/15 flex items-center justify-center hover:border-[#8E7B4B] hover:bg-white/5 transition-all"
-                data-cursor="hover"
-                aria-label="Close"
-              >
-                <X className="h-5 w-5" />
-              </button>
-            </div>
-
-            <motion.div
-              initial={{ scale: 0.97, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              transition={{ duration: 0.8, ease, delay: 0.1 }}
-              className="relative aspect-video w-full rounded-xl overflow-hidden bg-[#0a0a0a] ring-1 ring-white/10"
-            >
-              <video
-                key={project.videoUrl}
-                src={project.videoUrl}
-                poster={project.thumbnail}
-                autoPlay
-                muted
-                loop
-                playsInline
-                controls
-                className="h-full w-full object-cover"
-              />
-            </motion.div>
-
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mt-12">
-              <div className="md:col-span-2">
-                <div className="kicker mb-3">About</div>
-                <p className="text-lg md:text-xl text-white/90 leading-relaxed">{project.description}</p>
-                <p className="text-sm text-[#BDBDBD] mt-6">{project.credits}</p>
-              </div>
-              <div className="space-y-8">
-                <div>
-                  <div className="kicker mb-3">Software</div>
-                  <div className="flex flex-wrap gap-2">
-                    {project.software.map((s) => (
-                      <span key={s} className="text-xs px-3 py-1.5 rounded-full border border-white/10 bg-white/5">
-                        {s}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-                {Object.keys(project.links || {}).length > 0 && (
-                  <div>
-                    <div className="kicker mb-3">Links</div>
-                    <div className="flex flex-col gap-2">
-                      {Object.entries(project.links).map(([k, v]) => v && (
-                        <a
-                          key={k}
-                          href={v}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="group flex items-center justify-between rounded-md border border-white/10 px-4 py-3 hover:border-[#8E7B4B] hover:bg-white/5 transition-all"
-                          data-cursor="hover"
-                        >
-                          <span className="inline-flex items-center gap-3 text-sm">
-                            {linkIcon(k)} {LINK_LABELS[k] || k}
-                          </span>
-                          <ArrowUpRight className="h-4 w-4 opacity-60 group-hover:opacity-100 group-hover:text-[#8E7B4B] transition" />
-                        </a>
-                      ))}
-                    </div>
-                  </div>
-                )}
-              </div>
-            </div>
-          </motion.div>
-        </motion.div>
-      )}
-    </AnimatePresence>
-  );
-};
-
-// ───────────────────────────────────────────────────────────── About + Counters
+// ─── Counters & About
 const Counter = ({ value, suffix = '' }) => {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: '-20% 0px' });
@@ -440,14 +271,13 @@ const About = () => (
   </section>
 );
 
-// ───────────────────────────────────────────────────────────── Contact
+// ─── Contact
 const PROJECT_TYPES = ['Brand Film', 'Product Reveal', 'Title Sequence', '3D / Motion', 'Editorial', 'Other'];
 
 const Contact = () => {
   const [form, setForm] = useState({ name: '', email: '', projectType: PROJECT_TYPES[0], message: '' });
-  const [status, setStatus] = useState('idle'); // idle | sending | sent | error
+  const [status, setStatus] = useState('idle');
   const [errMsg, setErrMsg] = useState('');
-
   const onChange = (k) => (e) => setForm({ ...form, [k]: e.target.value });
 
   const submit = async (e) => {
@@ -460,11 +290,8 @@ const Contact = () => {
         body: JSON.stringify(form)
       });
       const data = await res.json().catch(() => ({}));
-      if (!res.ok) {
-        setStatus('error'); setErrMsg(data.error || 'Something went wrong.');
-      } else {
-        setStatus('sent');
-      }
+      if (!res.ok) { setStatus('error'); setErrMsg(data.error || 'Something went wrong.'); }
+      else { setStatus('sent'); }
     } catch {
       setStatus('error'); setErrMsg('Network error.');
     }
@@ -484,7 +311,7 @@ const Contact = () => {
           </p>
           <div className="mt-10 space-y-2 text-sm">
             <div className="text-[#BDBDBD]">Email</div>
-            <a href="mailto:sheronpinto588@gmail.com" className="text-lg hover:text-[#8E7B4B] transition-colors">
+            <a href="mailto:sheronpinto588@gmail.com" className="text-lg hover:text-[#8E7B4B] transition-colors" data-cursor="hover">
               sheronpinto588@gmail.com
             </a>
           </div>
@@ -520,37 +347,21 @@ const Contact = () => {
               >
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <Field label="Name">
-                    <input
-                      required value={form.name} onChange={onChange('name')}
-                      className="bare-input" placeholder="Your full name"
-                    />
+                    <input required value={form.name} onChange={onChange('name')} className="bare-input" placeholder="Your full name" />
                   </Field>
                   <Field label="Email">
-                    <input
-                      required type="email" value={form.email} onChange={onChange('email')}
-                      className="bare-input" placeholder="you@studio.com"
-                    />
+                    <input required type="email" value={form.email} onChange={onChange('email')} className="bare-input" placeholder="you@studio.com" />
                   </Field>
                 </div>
                 <Field label="Project Type">
-                  <select
-                    value={form.projectType} onChange={onChange('projectType')}
-                    className="bare-input appearance-none"
-                  >
+                  <select value={form.projectType} onChange={onChange('projectType')} className="bare-input appearance-none">
                     {PROJECT_TYPES.map((p) => <option key={p} value={p}>{p}</option>)}
                   </select>
                 </Field>
                 <Field label="Message">
-                  <textarea
-                    required rows={5} value={form.message} onChange={onChange('message')}
-                    className="bare-input resize-none" placeholder="Tell me about your project, timeline and vibe."
-                  />
+                  <textarea required rows={5} value={form.message} onChange={onChange('message')} className="bare-input resize-none" placeholder="Tell me about your project, timeline and vibe." />
                 </Field>
-
-                {status === 'error' && (
-                  <p className="text-sm text-red-400">{errMsg}</p>
-                )}
-
+                {status === 'error' && <p className="text-sm text-red-400">{errMsg}</p>}
                 <button
                   type="submit"
                   disabled={status === 'sending'}
@@ -567,17 +378,7 @@ const Contact = () => {
       </div>
 
       <style jsx>{`
-        .bare-input {
-          width: 100%;
-          background: transparent;
-          color: white;
-          border: 0;
-          border-bottom: 1px solid rgba(255,255,255,0.12);
-          padding: 14px 0;
-          font-size: 16px;
-          outline: none;
-          transition: border-color 300ms ease;
-        }
+        .bare-input { width: 100%; background: transparent; color: white; border: 0; border-bottom: 1px solid rgba(255,255,255,0.12); padding: 14px 0; font-size: 16px; outline: none; transition: border-color 300ms ease; }
         .bare-input::placeholder { color: rgba(189,189,189,0.5); }
         .bare-input:focus { border-color: #8E7B4B; }
         select.bare-input { background: transparent; }
@@ -594,7 +395,7 @@ const Field = ({ label, children }) => (
   </label>
 );
 
-// ───────────────────────────────────────────────────────────── Footer
+// ─── Footer
 const Footer = () => (
   <footer className="relative z-10 px-6 lg:px-10 py-16 border-t border-white/5">
     <div className="max-w-[1500px] mx-auto grid grid-cols-1 md:grid-cols-3 gap-10 items-end">
@@ -610,11 +411,7 @@ const Footer = () => (
         <a href="https://linkedin.com" target="_blank" rel="noreferrer" className="hover:text-white">LinkedIn</a>
       </div>
       <div className="md:text-right">
-        <a
-          href="#top"
-          className="inline-flex items-center gap-2 text-sm text-[#BDBDBD] hover:text-white transition-colors"
-          data-cursor="hover"
-        >
+        <a href="#top" className="inline-flex items-center gap-2 text-sm text-[#BDBDBD] hover:text-white transition-colors" data-cursor="hover">
           Back to top <ArrowUp className="h-4 w-4" />
         </a>
         <div className="kicker mt-4">© {new Date().getFullYear()} Movaro Studio</div>
@@ -623,28 +420,19 @@ const Footer = () => (
   </footer>
 );
 
-// ───────────────────────────────────────────────────────────── App
+// ─── App
 function App() {
-  const [open, setOpen] = useState(null);
-  const onContactClick = () => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
-
   return (
-    <div className="relative grain vignette">
-      <SmoothScroll />
-      <Cursor />
-      <div className="aurora" />
-      <Particles />
-
-      <Nav onContactClick={onContactClick} />
+    <>
+      <Nav />
       <main className="relative z-10">
         <Hero />
-        <Work onOpen={setOpen} />
+        <Work />
         <Contact />
         <About />
       </main>
       <Footer />
-      <ProjectModal project={open} onClose={() => setOpen(null)} />
-    </div>
+    </>
   );
 }
 

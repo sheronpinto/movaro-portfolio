@@ -8,7 +8,7 @@ import {
   Instagram, Youtube, Github, Globe, ExternalLink, HardDrive
 } from 'lucide-react';
 import Nav from '@/components/Nav';
-import { LINK_LABELS } from '@/lib/projects';
+import { LINK_LABELS, getPreview } from '@/lib/projects';
 
 const ease = [0.22, 1, 0.36, 1];
 
@@ -83,7 +83,7 @@ export default function CaseStudy({ project, next, index, total }) {
           className="absolute inset-0 z-0"
         >
           <img
-            src={project.thumbnail}
+            src={getPreview(project)}
             alt={project.title}
             className="h-full w-full object-cover"
           />
@@ -145,7 +145,7 @@ export default function CaseStudy({ project, next, index, total }) {
             <video
               key={project.videoUrl}
               src={project.videoUrl}
-              poster={project.thumbnail}
+              poster={getPreview(project)}
               autoPlay
               muted
               loop

@@ -495,7 +495,9 @@ function App() {
       <main className="relative z-10">
         <Hero />
         <Work />
-        <Contact />
+        <div className="hidden md:block">
+  <Contact />
+</div>
         <About />
       </main>
       <Footer />

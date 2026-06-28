@@ -3,6 +3,8 @@ import { Providers } from './providers';
 import { Space_Grotesk } from 'next/font/google';
 import Shell from './Shell';
 
+
+
 const spaceGrotesk = Space_Grotesk({
   subsets: ['latin'],
   weight: ['400', '500', '600', '700'],
@@ -16,13 +18,22 @@ export const metadata = {
     'The portfolio of Sheron Pinto, founder of MOVARO. Premium motion graphics, visual storytelling and cinematic digital experiences.',
   authors: [{ name: 'Sheron Pinto' }],
   creator: 'Sheron Pinto',
+  
+  icons: {
+    icon: '/logo.svg',
+    shortcut: '/logo.svg',
+    apple: '/logo.svg',
+  },
+
   openGraph: {
     title: 'Sheron Pinto • Motion Designer® · Motion Design That Moves People',
     description: 'Premium motion graphics, visual storytelling and cinematic digital experiences by Sheron Pinto, founder of MOVARO.',
     siteName: 'Sheronpinto®',
     type: 'website'
+    
   }
 };
+
 
 export default function RootLayout({ children }) {
   return (

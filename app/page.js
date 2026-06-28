@@ -52,7 +52,7 @@ const Hero = () => {
   const op = useTransform(scrollYProgress, [0, 0.25], [1, 0]);
 
   return (
-    <section id="top" className="relative min-h-screen flex flex-col justify-center px-6 lg:px-10 pt-32 pb-24">
+    <section id="top" className="relative flex flex-col justify-center px-6 lg:px-10 pt-32 pb-4">
       <motion.div style={{ y, opacity: op }} className="relative z-10 max-w-[1500px] mx-auto w-full">
         <motion.div
           initial={{ opacity: 0 }}
@@ -108,24 +108,25 @@ const Hero = () => {
             <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
           </Link>
         </motion.div>
-      </motion.div>
 
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1, delay: 1.6 }}
-        className="absolute -bottom-6 left-0 right-0 flex justify-center z-10"
-      >
-        <div className="flex flex-col items-center gap-3 text-[11px] tracking-[0.3em] text-[#BDBDBD]">
-          SCROLL
-          <span className="block h-12 w-px bg-gradient-to-b from-white/40 to-transparent relative overflow-hidden">
-            <motion.span
-              animate={{ y: ['-100%', '100%'] }}
-              transition={{ duration: 2.2, repeat: Infinity, ease: 'easeInOut' }}
-              className="absolute inset-x-0 top-0 h-1/2 bg-white"
-            />
-          </span>
-        </div>
+        {/* SCROLL indicator — now in flow, sits a controlled distance below the buttons */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1, delay: 1.6 }}
+          className="mt-14 md:mt-16 flex justify-center z-10"
+        >
+          <div className="flex flex-col items-center gap-3 text-[11px] tracking-[0.3em] text-[#BDBDBD]">
+            SCROLL
+            <span className="block h-12 w-px bg-gradient-to-b from-white/40 to-transparent relative overflow-hidden">
+              <motion.span
+                animate={{ y: ['-100%', '100%'] }}
+                transition={{ duration: 2.2, repeat: Infinity, ease: 'easeInOut' }}
+                className="absolute inset-x-0 top-0 h-1/2 bg-white"
+              />
+            </span>
+          </div>
+        </motion.div>
       </motion.div>
     </section>
   );
@@ -187,9 +188,9 @@ const ProjectCard = ({ project, index }) => {
 
 // ─── Work
 const Work = () => (
-  <section id="work" className="relative z-10 px-6 lg:px-10 py-32 md:py-40">
+  <section id="work" className="relative z-10 px-6 lg:px-10 pt-8 pb-32 md:pt-10 md:pb-40">
     <div className="max-w-[1500px] mx-auto">
-      <FadeUp className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-20 md:mb-24">
+      <FadeUp className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16 md:mb-20">
         <div>
           <div className="kicker mb-4">◦ Selected Work</div>
           <h2 className="display text-5xl md:text-7xl">Featured.</h2>

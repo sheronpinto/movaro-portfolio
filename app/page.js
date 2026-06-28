@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import { motion, useScroll, useTransform, useInView, AnimatePresence } from 'framer-motion';
-import { ArrowUpRight, ArrowRight, ArrowUp } from 'lucide-react';
+import { ArrowUpRight, ArrowRight, ArrowUp, Instagram, Youtube, Linkedin, Mail } from 'lucide-react';
 import { PROJECTS } from '@/lib/projects';
 import Nav from '@/components/Nav';
 
@@ -236,7 +236,7 @@ const About = () => (
   <section id="about" className="relative z-10 px-6 lg:px-10 py-32 md:py-40 border-t border-white/5">
     <div className="max-w-[1500px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20">
       <FadeUp className="lg:col-span-5">
-        <div className="kicker mb-4">◦ About</div>
+        <div className="kicker mb-4">◦ About Me</div>
         <h2 className="display text-5xl md:text-6xl leading-[1.02]">
           Hi, I&apos;m<br />Sheron Pinto.
         </h2>
@@ -381,6 +381,44 @@ const Contact = () => {
               </motion.form>
             )}
           </AnimatePresence>
+
+          {/* Quick contact — premium minimalist social row, directly below Send button */}
+          <div className="mt-10 flex items-center gap-6">
+            <a
+              href="https://instagram.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Instagram"
+              className="quick-icon"
+            >
+              <Instagram strokeWidth={1.4} />
+            </a>
+            <a
+              href="https://youtube.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="YouTube"
+              className="quick-icon"
+            >
+              <Youtube strokeWidth={1.4} />
+            </a>
+            <a
+              href="https://linkedin.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="LinkedIn"
+              className="quick-icon"
+            >
+              <Linkedin strokeWidth={1.4} />
+            </a>
+            <a
+              href="mailto:sheronpinto588@gmail.com"
+              aria-label="Email"
+              className="quick-icon"
+            >
+              <Mail strokeWidth={1.4} />
+            </a>
+          </div>
         </FadeUp>
       </div>
 
@@ -390,6 +428,9 @@ const Contact = () => {
         .bare-input:focus { border-color: #8E7B4B; }
         select.bare-input { background: transparent; }
         select.bare-input option { background: #101010; color: white; }
+        .quick-icon { color: rgba(255,255,255,0.85); transition: color 280ms ease, transform 280ms cubic-bezier(0.22,1,0.36,1); display: inline-flex; }
+        .quick-icon :global(svg) { width: 21px; height: 21px; }
+        .quick-icon:hover { color: #8E7B4B; transform: scale(1.05); }
       `}</style>
     </section>
   );

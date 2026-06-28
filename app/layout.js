@@ -18,7 +18,7 @@ export const metadata = {
     'The portfolio of Sheron Pinto, founder of MOVARO. Premium motion graphics, visual storytelling and cinematic digital experiences.',
   authors: [{ name: 'Sheron Pinto' }],
   creator: 'Sheron Pinto',
-  
+
   icons: {
     icon: '/logo.svg',
     shortcut: '/logo.svg',
@@ -39,6 +39,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" className={spaceGrotesk.variable}>
       <head>
+        <link rel="icon" href="/logo.png" type="image/png" />
         <script
           dangerouslySetInnerHTML={{
             __html:

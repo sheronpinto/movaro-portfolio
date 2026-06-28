@@ -114,7 +114,7 @@ const Hero = () => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1, delay: 1.6 }}
-        className="absolute bottom-10 left-0 right-0 flex justify-center z-10"
+        className="absolute -bottom-6 left-0 right-0 flex justify-center z-10"
       >
         <div className="flex flex-col items-center gap-3 text-[11px] tracking-[0.3em] text-[#BDBDBD]">
           SCROLL

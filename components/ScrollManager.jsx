@@ -31,9 +31,14 @@ export default function ScrollManager() {
     if (!el) return false;
 
     const lenis = window.__lenis;
-    if (lenis && typeof lenis.scrollTo === 'function') {
-      lenis.scrollTo(el, { offset: -80, duration: 1.05 });
-    } else {
+    const isMobile = window.innerWidth < 768;
+
+if (lenis && typeof lenis.scrollTo === 'function') {
+  lenis.scrollTo(el, {
+    offset: -80,
+    duration: isMobile ? 0.25 : 1.05,
+  });
+} else {
       const top = el.getBoundingClientRect().top + window.pageYOffset - 80;
       window.scrollTo({ top, behavior: 'smooth' });
     }
@@ -89,9 +94,14 @@ export default function ScrollManager() {
         if (el) {
           e.preventDefault();
           const lenis = window.__lenis;
-          if (lenis && typeof lenis.scrollTo === 'function') {
-            lenis.scrollTo(el, { offset: -80, duration: 1.05 });
-          } else {
+          const isMobile = window.innerWidth < 768;
+
+if (lenis && typeof lenis.scrollTo === 'function') {
+  lenis.scrollTo(el, {
+    offset: -80,
+    duration: isMobile ? 0.25 : 1.05,
+  });
+} else {
             const top = el.getBoundingClientRect().top + window.pageYOffset - 80;
             window.scrollTo({ top, behavior: 'smooth' });
           }

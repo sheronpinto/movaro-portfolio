@@ -245,9 +245,7 @@ const About = () => (
       </FadeUp>
       <FadeUp delay={0.15} className="lg:col-span-7 space-y-6 text-[#BDBDBD] text-lg leading-relaxed">
         <p>
-          I&apos;m an independent motion designer working under MOVARO &mdash; a one-person practice making cinematic
-          work for brands, agencies and artists who value restraint over noise. I specialise in premium motion
-          graphics, visual storytelling and cinematic digital experiences.
+          I&apos;m Sheron Pinto, an independent motion designer and founder of MOVARO &mdash; a personal creative brand where I craft premium motion graphics, cinematic visuals and digital experiences that blend storytelling with purposeful design.
         </p>
         <p>
           Every project I take on starts with a single idea and ends with a frame you&apos;d hang on a wall.

@@ -62,13 +62,15 @@ export default function Nav() {
               About&nbsp;Me
             </Link>
 
-            <Link
-              href="/#contact"
-              prefetch
-              className="nav-link whitespace-nowrap"
-            >
-              Contact
-            </Link>
+            <div className="hidden md:block">
+  <Link
+    href="/#contact"
+    prefetch
+    className="nav-link whitespace-nowrap"
+  >
+    Contact
+  </Link>
+</div>
 
           </nav>
 

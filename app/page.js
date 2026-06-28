@@ -237,16 +237,23 @@ const About = () => (
     <div className="max-w-[1500px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20">
       <FadeUp className="lg:col-span-5">
         <div className="kicker mb-4">◦ About</div>
-        <h2 className="display text-5xl md:text-6xl">A studio of one,<br />built for the frame.</h2>
+        <h2 className="display text-5xl md:text-6xl leading-[1.02]">
+          Hi, I&apos;m<br />Sheron Pinto.
+        </h2>
+        <div className="mt-5 text-sm tracking-[0.18em] uppercase text-[#BDBDBD]">
+          Motion Designer &amp; Founder of <span className="text-white">MOVARO<span className="text-[#8E7B4B]">®</span></span>
+        </div>
       </FadeUp>
       <FadeUp delay={0.15} className="lg:col-span-7 space-y-6 text-[#BDBDBD] text-lg leading-relaxed">
         <p>
-          MOVARO is an independent motion practice making cinematic work for brands, agencies and artists who value
-          restraint over noise. Every project starts with a single idea and ends with a frame you&apos;d hang on a wall.
+          I&apos;m an independent motion designer working under MOVARO &mdash; a one-person practice making cinematic
+          work for brands, agencies and artists who value restraint over noise. I specialise in premium motion
+          graphics, visual storytelling and cinematic digital experiences.
         </p>
         <p>
-          From bespoke 3D type and product films to identity systems and title sequences, the work spans disciplines
-          but holds to one rule — beautiful timing, beautifully timed.
+          Every project I take on starts with a single idea and ends with a frame you&apos;d hang on a wall.
+          From bespoke 3D type and product films to identity systems and title sequences, the work spans
+          disciplines but holds to one rule &mdash; beautiful timing, beautifully timed.
         </p>
       </FadeUp>
     </div>
@@ -304,11 +311,11 @@ const Contact = () => {
             Let&apos;s make<br />something<br />worth watching.
           </h2>
           <p className="mt-8 text-[#BDBDBD] max-w-md leading-relaxed">
-            Brand films, product reveals, title sequences, or just a hello. Tell me about your project — I respond
-            within 24 hours.
+            Brand films, product reveals, title sequences, or just a hello. Tell me about your project &mdash;
+            I respond within 24 hours.
           </p>
           <div className="mt-10 space-y-2 text-sm">
-            <div className="text-[#BDBDBD]">Email</div>
+            <div className="text-[#BDBDBD]">A direct line to Sheron Pinto</div>
             <a href="mailto:sheronpinto588@gmail.com" className="text-lg hover:text-[#8E7B4B] transition-colors">
               sheronpinto588@gmail.com
             </a>
@@ -333,6 +340,9 @@ const Contact = () => {
                 <p className="mt-6 text-[#BDBDBD] max-w-md mx-auto">
                   Thank you, {form.name || 'friend'}. I&apos;ll be in touch from sheronpinto588@gmail.com shortly.
                 </p>
+                <div className="mt-8 text-[11px] tracking-[0.32em] uppercase text-[#8E7B4B]">
+                  — Sheron Pinto · MOVARO<span className="text-white">®</span>
+                </div>
               </motion.div>
             ) : (
               <motion.form
@@ -398,7 +408,9 @@ const Footer = () => (
     <div className="max-w-[1500px] mx-auto grid grid-cols-1 md:grid-cols-3 gap-10 items-end">
       <div>
         <div className="text-lg tracking-[0.2em] font-semibold">MOVARO<span className="text-[#8E7B4B]">®</span></div>
-        <div className="kicker mt-3">Available Worldwide</div>
+        <div className="mt-3 text-sm text-white">Sheron Pinto</div>
+        <div className="kicker mt-1">Motion Designer &middot; Founder</div>
+        <div className="kicker mt-3 opacity-70">Available Worldwide</div>
       </div>
       <div className="flex flex-wrap gap-6 md:gap-10 md:justify-center text-sm text-[#BDBDBD]">
         <a href="mailto:sheronpinto588@gmail.com" className="nav-link">Email</a>
@@ -410,7 +422,7 @@ const Footer = () => (
         <a href="#top" className="inline-flex items-center gap-2 text-sm text-[#BDBDBD] hover:text-white transition-colors">
           Back to top <ArrowUp className="h-4 w-4" />
         </a>
-        <div className="kicker mt-4">© {new Date().getFullYear()} Movaro Studio</div>
+        <div className="kicker mt-4">© {new Date().getFullYear()} Sheron Pinto · MOVARO<span className="text-[#8E7B4B]">®</span> Studio</div>
       </div>
     </div>
   </footer>

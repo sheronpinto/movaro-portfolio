@@ -95,16 +95,14 @@ const Hero = () => {
         >
           <Link
             href="/#work"
-            className="group inline-flex items-center gap-3 rounded-full bg-white text-black px-7 py-3.5 text-sm font-medium hover:bg-[#8E7B4B] hover:text-white transition-colors"
-            data-cursor="hover"
+            className="btn-lift group inline-flex items-center gap-3 rounded-full bg-white text-black px-7 py-3.5 text-sm font-medium hover:bg-[#8E7B4B] hover:text-white"
           >
             View Work
             <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
           </Link>
           <Link
             href="/#contact"
-            className="group inline-flex items-center gap-3 rounded-full border border-white/20 px-7 py-3.5 text-sm hover:border-white/60 transition-colors"
-            data-cursor="hover"
+            className="btn-lift group inline-flex items-center gap-3 rounded-full border border-white/20 px-7 py-3.5 text-sm hover:border-white/60"
           >
             Contact
             <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
@@ -152,9 +150,8 @@ const ProjectCard = ({ project, index }) => {
       <Link
         href={`/work/${project.id}`}
         className="block"
-        data-cursor="hover"
       >
-        <div className="relative overflow-hidden rounded-xl bg-[#151515] aspect-[16/10]">
+        <div className="card-lift relative overflow-hidden rounded-xl bg-[#151515] aspect-[16/10]">
           <motion.div style={{ y }} className="absolute inset-0 -m-8">
             <img
               src={project.thumbnail}
@@ -190,9 +187,9 @@ const ProjectCard = ({ project, index }) => {
 
 // ─── Work
 const Work = () => (
-  <section id="work" className="relative z-10 px-6 lg:px-10 py-32">
+  <section id="work" className="relative z-10 px-6 lg:px-10 py-32 md:py-40">
     <div className="max-w-[1500px] mx-auto">
-      <FadeUp className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16">
+      <FadeUp className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-20 md:mb-24">
         <div>
           <div className="kicker mb-4">◦ Selected Work</div>
           <h2 className="display text-5xl md:text-7xl">Featured.</h2>
@@ -203,7 +200,7 @@ const Work = () => (
         </p>
       </FadeUp>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10">
         {PROJECTS.map((p, i) => (
           <ProjectCard key={p.id} project={p} index={i} />
         ))}
@@ -235,8 +232,8 @@ const Counter = ({ value, suffix = '' }) => {
 };
 
 const About = () => (
-  <section id="about" className="relative z-10 px-6 lg:px-10 py-32 border-t border-white/5">
-    <div className="max-w-[1500px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12">
+  <section id="about" className="relative z-10 px-6 lg:px-10 py-32 md:py-40 border-t border-white/5">
+    <div className="max-w-[1500px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20">
       <FadeUp className="lg:col-span-5">
         <div className="kicker mb-4">◦ About</div>
         <h2 className="display text-5xl md:text-6xl">A studio of one,<br />built for the frame.</h2>
@@ -253,7 +250,7 @@ const About = () => (
       </FadeUp>
     </div>
 
-    <div className="max-w-[1500px] mx-auto mt-24 grid grid-cols-2 md:grid-cols-4 gap-y-12 gap-x-6">
+    <div className="max-w-[1500px] mx-auto mt-24 md:mt-32 grid grid-cols-2 md:grid-cols-4 gap-y-12 gap-x-8">
       {[
         { v: 120, s: '+', l: 'Projects' },
         { v: 38, s: '+', l: 'Templates' },
@@ -298,8 +295,8 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" className="relative z-10 px-6 lg:px-10 py-32 border-t border-white/5">
-      <div className="max-w-[1500px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-16">
+    <section id="contact" className="relative z-10 px-6 lg:px-10 py-32 md:py-40 border-t border-white/5">
+      <div className="max-w-[1500px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24">
         <FadeUp className="lg:col-span-5">
           <div className="kicker mb-4">◦ Contact</div>
           <h2 className="display text-5xl md:text-7xl leading-[0.95]">
@@ -311,7 +308,7 @@ const Contact = () => {
           </p>
           <div className="mt-10 space-y-2 text-sm">
             <div className="text-[#BDBDBD]">Email</div>
-            <a href="mailto:sheronpinto588@gmail.com" className="text-lg hover:text-[#8E7B4B] transition-colors" data-cursor="hover">
+            <a href="mailto:sheronpinto588@gmail.com" className="text-lg hover:text-[#8E7B4B] transition-colors">
               sheronpinto588@gmail.com
             </a>
           </div>
@@ -365,8 +362,7 @@ const Contact = () => {
                 <button
                   type="submit"
                   disabled={status === 'sending'}
-                  className="group inline-flex items-center gap-3 rounded-full bg-white text-black px-8 py-4 text-sm font-medium hover:bg-[#8E7B4B] hover:text-white transition-colors disabled:opacity-50"
-                  data-cursor="hover"
+                  className="btn-lift group inline-flex items-center gap-3 rounded-full bg-white text-black px-8 py-4 text-sm font-medium hover:bg-[#8E7B4B] hover:text-white disabled:opacity-50"
                 >
                   {status === 'sending' ? 'Sending…' : 'Send Message'}
                   <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
@@ -403,15 +399,14 @@ const Footer = () => (
         <div className="text-lg tracking-[0.2em] font-semibold">MOVARO<span className="text-[#8E7B4B]">®</span></div>
         <div className="kicker mt-3">Available Worldwide</div>
       </div>
-      <div className="flex flex-wrap gap-6 md:justify-center text-sm text-[#BDBDBD]">
-        <a href="mailto:sheronpinto588@gmail.com" className="hover:text-white">Email</a>
-        <a href="https://instagram.com" target="_blank" rel="noreferrer" className="hover:text-white">Instagram</a>
-        <a href="https://behance.net" target="_blank" rel="noreferrer" className="hover:text-white">Behance</a>
-        <a href="https://youtube.com" target="_blank" rel="noreferrer" className="hover:text-white">YouTube</a>
-        <a href="https://linkedin.com" target="_blank" rel="noreferrer" className="hover:text-white">LinkedIn</a>
+      <div className="flex flex-wrap gap-6 md:gap-10 md:justify-center text-sm text-[#BDBDBD]">
+        <a href="mailto:sheronpinto588@gmail.com" className="nav-link">Email</a>
+        <a href="https://instagram.com" target="_blank" rel="noreferrer" className="nav-link">Instagram</a>
+        <a href="https://youtube.com" target="_blank" rel="noreferrer" className="nav-link">YouTube</a>
+        <a href="https://linkedin.com" target="_blank" rel="noreferrer" className="nav-link">LinkedIn</a>
       </div>
       <div className="md:text-right">
-        <a href="#top" className="inline-flex items-center gap-2 text-sm text-[#BDBDBD] hover:text-white transition-colors" data-cursor="hover">
+        <a href="#top" className="inline-flex items-center gap-2 text-sm text-[#BDBDBD] hover:text-white transition-colors">
           Back to top <ArrowUp className="h-4 w-4" />
         </a>
         <div className="kicker mt-4">© {new Date().getFullYear()} Movaro Studio</div>

@@ -100,7 +100,7 @@ export default function CaseStudy({ project, next, index, total }) {
             <Link
               href="/#work"
               className="group inline-flex items-center gap-2 text-sm text-[#BDBDBD] hover:text-white transition-colors"
-              data-cursor="hover"
+             
             >
               <ArrowLeft className="h-4 w-4 transition-transform group-hover:-translate-x-1" />
               Back to Work
@@ -159,8 +159,8 @@ export default function CaseStudy({ project, next, index, total }) {
       </section>
 
       {/* DETAILS */}
-      <section className="px-6 lg:px-10 py-24 md:py-32">
-        <div className="max-w-[1500px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20">
+      <section className="px-6 lg:px-10 py-28 md:py-40">
+        <div className="max-w-[1500px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-14 lg:gap-24">
           <FadeUp className="lg:col-span-7 space-y-8">
             <div className="kicker">◦ About the project</div>
             <p className="text-2xl md:text-3xl leading-snug tracking-tight text-white/95">
@@ -203,7 +203,7 @@ export default function CaseStudy({ project, next, index, total }) {
                       target="_blank"
                       rel="noopener noreferrer"
                       className="group flex items-center justify-between rounded-md border border-white/10 px-4 py-3 hover:border-[#8E7B4B] hover:bg-white/5 transition-all"
-                      data-cursor="hover"
+                     
                     >
                       <span className="inline-flex items-center gap-3 text-sm">
                         {linkIcon(k)} {LINK_LABELS[k] || k}
@@ -219,18 +219,17 @@ export default function CaseStudy({ project, next, index, total }) {
       </section>
 
       {/* NEXT PROJECT */}
-      <section className="px-6 lg:px-10 pb-32">
+      <section className="px-6 lg:px-10 pb-40">
         <FadeUp className="max-w-[1500px] mx-auto">
           <Link
             href={`/work/${next.id}`}
-            className="group block relative overflow-hidden rounded-xl ring-1 ring-white/10"
-            data-cursor="hover"
+            className="group block"
           >
-            <div className="relative aspect-[21/8] md:aspect-[21/7]">
+            <div className="card-lift relative overflow-hidden rounded-xl ring-1 ring-white/10 aspect-[21/8] md:aspect-[21/7]">
               <img
                 src={next.thumbnail}
                 alt={next.title}
-                className="h-full w-full object-cover transition-transform duration-[1.4s] ease-out group-hover:scale-105"
+                className="h-full w-full object-cover transition-transform duration-[1400ms] ease-out group-hover:scale-105"
               />
               <div className="absolute inset-0 bg-gradient-to-r from-[#050505]/80 via-[#050505]/30 to-[#050505]/80" />
               <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-6">

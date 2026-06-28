@@ -7,7 +7,6 @@ import {
   ArrowLeft, ArrowUpRight, ArrowDown,
   Instagram, Youtube, Github, Globe, ExternalLink, HardDrive
 } from 'lucide-react';
-import Nav from '@/components/Nav';
 import { LINK_LABELS, getPreview } from '@/lib/projects';
 
 const ease = [0.22, 1, 0.36, 1];
@@ -74,7 +73,6 @@ export default function CaseStudy({ project, next, index, total }) {
 
   return (
     <main className="relative z-10">
-      <Nav />
 
       {/* HERO ─ massive title + parallax thumbnail */}
       <section ref={heroRef} className="relative min-h-screen flex flex-col justify-end px-6 lg:px-10 pt-28 pb-20 overflow-hidden">

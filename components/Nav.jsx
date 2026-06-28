@@ -20,7 +20,7 @@ export default function Nav() {
       initial={{ y: -40, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.7, ease, delay: 0.1 }}
-      className={`fixed top-0 left-0 right-0 z-50 backdrop-blur-md transition-[background,backdrop-filter,border-color] duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-[70] backdrop-blur-md transition-[background,backdrop-filter,border-color] duration-300 ${
         scrolled
           ? 'bg-[#050505]/70 backdrop-blur-xl border-b border-white/5'
           : 'bg-[#050505]/25 border-b border-white/0'

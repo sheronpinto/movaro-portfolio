@@ -5,7 +5,6 @@ import Link from 'next/link';
 import { motion, useScroll, useTransform, useInView, AnimatePresence } from 'framer-motion';
 import { ArrowUpRight, ArrowRight, ArrowUp, Instagram, Youtube, Linkedin, Mail } from 'lucide-react';
 import { PROJECTS } from '@/lib/projects';
-import Nav from '@/components/Nav';
 
 const ease = [0.22, 1, 0.36, 1];
 
@@ -473,7 +472,6 @@ const Footer = () => (
 function App() {
   return (
     <>
-      <Nav />
       <main className="relative z-10">
         <Hero />
         <Work />

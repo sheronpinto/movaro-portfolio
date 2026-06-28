@@ -9,9 +9,9 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }) {
   const { slug } = await params;
   const p = findProject(slug);
-  if (!p) return { title: 'MOVARO®' };
+  if (!p) return { title: 'Sheronpinto®' };
   return {
-    title: `${p.title} — MOVARO®`,
+    title: `${p.title} — Sheronpinto®`,
     description: p.description
   };
 }

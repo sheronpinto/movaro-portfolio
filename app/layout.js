@@ -11,15 +11,15 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 export const metadata = {
-  title: 'Sheron Pinto — MOVARO® · Motion Design That Moves People',
+  title: 'Sheron Pinto • Motion Designer® · Motion Design That Moves People',
   description:
     'The portfolio of Sheron Pinto, founder of MOVARO. Premium motion graphics, visual storytelling and cinematic digital experiences.',
   authors: [{ name: 'Sheron Pinto' }],
   creator: 'Sheron Pinto',
   openGraph: {
-    title: 'Sheron Pinto — MOVARO® · Motion Design That Moves People',
+    title: 'Sheron Pinto • Motion Designer® · Motion Design That Moves People',
     description: 'Premium motion graphics, visual storytelling and cinematic digital experiences by Sheron Pinto, founder of MOVARO.',
-    siteName: 'MOVARO®',
+    siteName: 'Sheronpinto®',
     type: 'website'
   }
 };

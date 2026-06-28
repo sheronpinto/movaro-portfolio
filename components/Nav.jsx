@@ -36,7 +36,7 @@ export default function Nav() {
           prefetch
           className="text-lg tracking-[0.2em] font-semibold transition-opacity hover:opacity-80"
         >
-          MOVARO<span className="text-[#8E7B4B]">®</span>
+          SheronPinto<span className="text-[#8E7B4B]">®</span>
         </Link>
 
         {/* Right Side */}

@@ -240,7 +240,7 @@ const About = () => (
           Hi, I&apos;m<br />Sheron Pinto.
         </h2>
         <div className="mt-5 text-sm tracking-[0.18em] uppercase text-[#BDBDBD]">
-          Motion Designer &amp; Founder of <span className="text-white">Sheron pinto<span className="text-[#8E7B4B]">®</span></span>
+          Motion Designer &amp; Founder of <span className="text-white">MOVARO<span className="text-[#8E7B4B]">®</span></span>
         </div>
       </FadeUp>
       <FadeUp delay={0.15} className="lg:col-span-7 space-y-6 text-[#BDBDBD] text-lg leading-relaxed">

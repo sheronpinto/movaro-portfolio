@@ -247,6 +247,28 @@ const About = () => (
         <p>
           I&apos;m Sheron Pinto, an independent motion designer and founder of MOVARO &mdash; a personal creative brand where I craft premium motion graphics, cinematic visuals and digital experiences that blend storytelling with purposeful design.
         </p>
+        <div className="mt-8 rounded-2xl border border-white/10 bg-white/[0.03] p-6">
+  <div className="text-xs uppercase tracking-[0.25em] text-[#8E7B4B]">
+    Explore My Brand
+  </div>
+
+  <h3 className="mt-2 text-2xl font-semibold">
+    MOVARO<span className="text-[#8E7B4B]">®</span>
+  </h3>
+
+  <p className="mt-3 text-[#BDBDBD] leading-relaxed">
+    Premium motion graphics, templates, creative assets and digital resources.
+  </p>
+
+  <a
+    href="https://movarodigital.pages.dev/"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="mt-5 inline-flex items-center gap-2 text-[#8E7B4B] hover:text-white transition-colors"
+  >
+    Visit MOVARO ↗
+  </a>
+</div>
         <p>
           Every project I take on starts with a single idea and ends with a frame you&apos;d hang on a wall.
           From bespoke 3D type and product films to identity systems and title sequences, the work spans
